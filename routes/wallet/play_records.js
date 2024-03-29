@@ -2,7 +2,7 @@ const express = require("express");
 const route = express.Router();
 const responseManager = require("../../utils/responseManager");
 const playRecordService = require("../../services/wallet/playRecords_services");
-const {playRecords_schema} = require("../../models/wallet/playRecords_schema");
+const {playRecordSchema} = require("../../models/wallet/playRecords_schema");
 
 
 
@@ -15,7 +15,7 @@ route.get("/getAllPlayRecords", async (req, res) => {
 route.post("/newPlayRecord", async (req, res) => {
     const data = req.body;
 
-    const { error } = playRecords_schema.validate(data);
+    const { error } = playRecordSchema.validate(data);
     if (error) {
         const errorMessage = error.details.map((detail) => detail.message).join(', ');
         return res.status(400).send(errorMessage);
@@ -31,7 +31,7 @@ route.put("/updatePlayRecord/:play_record_id", (req, res) => {
     const play_record_id = req.params.play_record_id;
     const data = req.body;
 
-    const { error } = playRecords_schema.validate(data);
+    const { error } = playRecordSchema.validate(data);
     if (error) {
         const errorMessage = error.details.map((detail) => detail.message).join(', ');
         return res.status(400).send(errorMessage);
