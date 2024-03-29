@@ -1,0 +1,21 @@
+{
+  "name": "backend_game",
+  "version": "1.0.0",
+  "description": "color games",
+  "main": "index.js",
+  "scripts": {
+    "test": "yes"
+  },
+  "author": "Admin",
+  "license": "ISC",
+  "dependencies": {
+    "cloudinary": "^2.0.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-errors": "^3.1.1",
+    "joi": "^17.12.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.3"
+  }
+}
