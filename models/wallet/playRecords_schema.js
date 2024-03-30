@@ -11,4 +11,4 @@ const playRecordSchema = Joi.object({
 
 module.exports = {
   playRecordSchema,
-};
+}; 
