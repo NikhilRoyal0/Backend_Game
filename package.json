@@ -4,12 +4,14 @@
   "description": "color games",
   "main": "index.js",
   "scripts": {
-    "test": "yes"
+    "test": "yes",
+    "dev": "node index.js"
   },
   "author": "Admin",
   "license": "ISC",
   "dependencies": {
     "cloudinary": "^2.0.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",

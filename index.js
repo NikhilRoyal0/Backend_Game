@@ -2,10 +2,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
 const app = express();
+const cors = require('cors');
 require("express-async-errors");
 const ResponseManager = require("./utils/responseManager");
 
 app.use(express.json());
+app.use(cors());
+
 
 // Middleware to parse URL-encoded data in the request body
 app.use(express.urlencoded({ extended: true }));
