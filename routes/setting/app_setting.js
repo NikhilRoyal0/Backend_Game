@@ -28,8 +28,7 @@ route.post("/addSetting", async (req, res) => {
 });
 
 
-route.put("/updateSetting/:setting_id", (req, res) => {
-    const setting_id = req.params.setting_id;
+route.put("/updateSetting", (req, res) => {
     const data = req.body;
 
     // Validate request body against gameAppSettingsSchema
@@ -39,7 +38,7 @@ route.put("/updateSetting/:setting_id", (req, res) => {
         return res.status(400).send(errorMessage);
     }
 
-    appSettingService.updateSetting(setting_id, data)
+    appSettingService.updateSetting(data)
         .then(updatedSetting => {
             responseManager.sendSuccess(res, updatedSetting);
         })

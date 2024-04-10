@@ -6,7 +6,7 @@ const rechargeRequest_schema = Joi.object({
   amount: Joi.number().min(0).required(),
   remarks: Joi.string().allow("").optional(),
   status: Joi.string().valid("pending", "completed", "failed").required(),
-  created_on: Joi.date().timestamp().required(),
+  created_on: Joi.date().required(),
 });
 
 module.exports = {

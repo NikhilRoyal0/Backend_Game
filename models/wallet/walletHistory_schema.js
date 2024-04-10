@@ -6,7 +6,7 @@ const walletHistory_schema = Joi.object({
   amount: Joi.number().min(0).required(),
   previous_amount: Joi.number().min(0).required(),
   remarks: Joi.string().allow("").optional(),
-  created_on: Joi.date().timestamp().required(),
+  created_on: Joi.date().required(),
 });
 
 module.exports = {
