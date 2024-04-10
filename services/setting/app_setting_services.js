@@ -16,8 +16,8 @@ module.exports.deleteSetting=async(id)=>{
     return data;
 }
 
-module.exports.updateSetting = async (setting_id, settingData) => {
-    const query = "UPDATE game_app_settings SET ? WHERE setting_id = ?";
-    const [data] = await dbConnection.query(query, [settingData, setting_id]);
+module.exports.updateSetting = async (settingData) => {
+    const query = "UPDATE game_app_settings SET ? WHERE setting_id = 1";
+    const [data] = await dbConnection.query(query, [settingData]);
     return data;
-};
+}; 

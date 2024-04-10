@@ -27,8 +27,7 @@ route.post("/insertMarquee", async (req, res) => {
     .catch((error) => responseManager.sendError(res, error.message));
 });
 
-route.put("/updateMarquee/:marquee_id", (req, res) => {
-  const marquee_id = req.params.marquee_id;
+route.put("/updateMarquee", (req, res) => {
   const data = req.body;
 
   const { error } = gameMarqueeSchema.validate(data);
@@ -40,7 +39,7 @@ route.put("/updateMarquee/:marquee_id", (req, res) => {
   }
 
   marqueeService
-    .updateMarquee(marquee_id, data)
+    .updateMarquee(data)
     .then((updatedMarquee) => {
       responseManager.sendSuccess(res, updatedMarquee);
     })

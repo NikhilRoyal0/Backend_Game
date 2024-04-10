@@ -16,8 +16,8 @@ module.exports.deleteMarquee=async(id)=>{
     return data;
 }
 
-module.exports.updateMarquee = async (marquee_id, marqueeData) => {
-    const query = "UPDATE game_marquee SET ? WHERE marquee_id = ?";
-    const [data] = await dbConnection.query(query, [marqueeData, marquee_id]);
+module.exports.updateMarquee = async (marqueeData) => {
+    const query = "UPDATE game_marquee SET ? WHERE marquee_id = 1";
+    const [data] = await dbConnection.query(query, [marqueeData]);
     return data;
 };
