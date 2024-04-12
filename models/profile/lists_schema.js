@@ -11,7 +11,7 @@ const gamelistSchema = Joi.object({
     game_category_id: Joi.number().integer().min(1).required(),
     game_secondary_background_image: Joi.any().required(), 
     game_max_price: Joi.number().min(0).required(),
-    game_not_played: Joi.boolean().required()
+    game_not_played: Joi.number().required()
 });
 
 module.exports = {
