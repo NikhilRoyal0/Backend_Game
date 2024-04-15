@@ -34,9 +34,10 @@ route.post("/login", async (req, res) => {
               "Error generating token"
             );
           } else {
+            // Respond with user data and token
             ResponseManager.sendSuccess(
               res,
-              { token },
+              { user: userData, token },
               200,
               "Login successful"
             );
@@ -51,73 +52,17 @@ route.post("/login", async (req, res) => {
         "Invalid email or password"
       );
     }
-  }  catch (error) {
+  } catch (error) {
     console.error("Server error:", error);
-    // Check if the error message indicates the user ID was not found
-    if (error.message.includes("undefined")) {
-      ResponseManager.sendError(
-        res,
-        404,
-        "USER_NOT_FOUND",
-        "User not found"
-      );
-    } else {
-      ResponseManager.sendError(
-        res,
-        500,
-        "SERVER_ERROR",
-        "Internal server error"
-      );
-    }
+    ResponseManager.sendError(
+      res,
+      500,
+      "SERVER_ERROR",
+      "Internal server error"
+    );
   }
 });
 
-route.post("/profile", verifyToken, async (req, res) => {
-  jwt.verify(req.token, secret_key, async (err, decoded) => {
-    if (err) {
-      console.error("Invalid token:", err);
-      ResponseManager.sendError(res, 401, "INVALID_TOKEN", "Invalid token");
-    } else {
-      try {
-        const userData = await LoginService.getUserById(decoded.userData.id);
-        if (userData) {
-          ResponseManager.sendSuccess(
-            res,
-            userData,
-            200,
-            "Profile retrieved successfully"
-          );
-        } else {
-          // Check if the error indicates the user was not found
-          ResponseManager.sendError(
-            res,
-            404,
-            "USER_NOT_FOUND",
-            "User not found"
-          );
-        }
-      } catch (error) {
-        console.error("Server error:", error);
-        // Check if the error message indicates the user ID was not found
-        if (error.message.includes("undefined")) {
-          ResponseManager.sendError(
-            res,
-            404,
-            "USER_NOT_FOUND",
-            "User not found"
-          );
-        } else {
-          ResponseManager.sendError(
-            res,
-            500,
-            "SERVER_ERROR",
-            "Internal server error"
-          );
-        }
-      }
-    }
-  });
-});
 
 
 function verifyToken(req, res, next) {
