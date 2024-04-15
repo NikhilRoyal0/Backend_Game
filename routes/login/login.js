@@ -10,7 +10,7 @@ route.post("/login", async (req, res) => {
   const { Email, Password } = req.body;
   try {
     const user = await LoginService.getUserByEmailAndPassword(Email, Password);
-    if (user) {
+    if (user !== null && user.length > 0) {
       const userData = {
         id: user[0].AdminID,
         Email: user[0].Email,
@@ -34,7 +34,6 @@ route.post("/login", async (req, res) => {
               "Error generating token"
             );
           } else {
-            // Respond with user data and token
             ResponseManager.sendSuccess(
               res,
               { user: userData, token },
@@ -45,6 +44,11 @@ route.post("/login", async (req, res) => {
         }
       );
     } else {
+      throw new Error("Invalid credentials");
+    }
+  } catch (error) {
+    console.error("Server error:", error);
+    if (error.message === "Invalid credentials") {
       ResponseManager.sendError(
         res,
         401,
@@ -52,18 +56,18 @@ route.post("/login", async (req, res) => {
         "Invalid email or password"
       );
     }
-  } catch (error) {
-    console.error("Server error:", error);
-    ResponseManager.sendError(
-      res,
-      500,
-      "SERVER_ERROR",
-      "Internal server error"
-    );
+    else if (error.message.includes("undefined")) {
+      ResponseManager.sendError(res, 404, "USER_NOT_FOUND", "User not found");
+    } else {
+      ResponseManager.sendError(
+        res,
+        500,
+        "SERVER_ERROR",
+        "Internal server error"
+      );
+    }
   }
 });
-
-
 
 function verifyToken(req, res, next) {
   const bearerHeader = req.headers["authorization"];
