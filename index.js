@@ -20,6 +20,8 @@ app_setting_routes = require("./routes/setting/index");
 game_users = require("./routes/profile/index");
 game_categories = require("./routes/profile/index");
 game_list = require("./routes/profile/index");
+login = require("./routes/login/login");
+profile = require("./routes/login/login");
 
 // Game Marquee
 game_marquee = require("./routes/marquee/index");
@@ -51,6 +53,8 @@ app.use("/v1/setting/", app_setting_routes);
 app.use("/v1/profile/", game_users);
 app.use("/v1/profile/", game_categories);
 app.use("/v1/profile/", game_list);
+app.use("/v1/",login);
+app.use("/v1/",profile);
 
 // Game Marquee
 
