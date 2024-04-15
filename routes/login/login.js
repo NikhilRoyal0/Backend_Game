@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const ResponseManager = require("../../utils/responseManager");
 const LoginService = require("../../services/login/loginService");
 
-const secret_key = "12";
+const secret_key = process.env.JWT_SECRET;
 
 route.post("/login", async (req, res) => {
   const { Email, Password } = req.body;
@@ -24,7 +24,7 @@ route.post("/login", async (req, res) => {
         { userData },
         secret_key,
         { expiresIn: "1200s" },
-        (err, token) => {
+        (err, jwtToken) => {
           if (err) {
             console.error("Error generating token:", err);
             ResponseManager.sendError(
@@ -36,7 +36,7 @@ route.post("/login", async (req, res) => {
           } else {
             ResponseManager.sendSuccess(
               res,
-              { user: userData, token },
+              { user: userData, jwtToken },
               200,
               "Login successful"
             );
