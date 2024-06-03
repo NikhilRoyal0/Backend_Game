@@ -12,6 +12,16 @@ route.get("/getWalletHistory", async (req, res) => {
   return;
 });
 
+route.get("/getHistoryByUserId/:user_id", async (req, res) => {
+  const { user_id } = req.params;
+  try {
+    const data = await walletHistoryService.getWallethistoryByUserId(user_id);
+    responseManager.sendSuccess(res, data);
+  } catch (error) {
+    responseManager.sendError(res, error.message);
+  }
+});
+
 route.post("/newWalletHistory", async (req, res) => {
   const data = req.body;
 

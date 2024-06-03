@@ -6,6 +6,12 @@ module.exports.getAllPlayRecords=async()=> {
 return data;
 }
 
+module.exports.getPlayRecordsByUserId = async (user_id) => {
+    const [data] = await dbConnection.query('SELECT * FROM gameplay_records WHERE user_id = ?', [user_id]);
+    return data;
+}
+
+
 module.exports.newPlayRecord=async(playRecords)=>{
     const [data]=await dbConnection.query('INSERT INTO gameplay_records SET ?',playRecords)
     return data;

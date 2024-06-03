@@ -12,6 +12,16 @@ route.get("/getAllPlayRecords", async (req, res) => {
   return;
 });
 
+route.get("/getRecordByUser/:user_id", async (req, res) => {
+    const { user_id } = req.params;
+    try {
+      const data = await playRecordService.getPlayRecordsByUserId(user_id);
+      responseManager.sendSuccess(res, data);
+    } catch (error) {
+      responseManager.sendError(res, error.message);
+    }
+  });
+
 route.post("/newPlayRecord", async (req, res) => {
     const data = req.body;
 

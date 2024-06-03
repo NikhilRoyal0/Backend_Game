@@ -12,6 +12,16 @@ route.get("/getAllBankAccounts", async (req, res) => {
   return;
 });
 
+route.get("/getAccountByUserId/:user_id", async (req, res) => {
+    const { user_id } = req.params;
+    try {
+      const data = await bankAccountService.getBankByUserId(user_id);
+      responseManager.sendSuccess(res, data);
+    } catch (error) {
+      responseManager.sendError(res, error.message);
+    }
+  });
+
 route.post("/addBankAccount", async (req, res) => {
     const data = req.body;
 

@@ -12,6 +12,16 @@ route.get("/getAllWithdrawRequest", async (req, res) => {
   return;
 });
 
+route.get("/getWithdrawRequest/:user_id", async (req, res) => {
+  const { user_id } = req.params;
+  try {
+    const data = await withdrawService.getRequestByUserId(user_id);
+    responseManager.sendSuccess(res, data);
+  } catch (error) {
+    responseManager.sendError(res, error.message);
+  }
+});
+
 route.post("/newWithdrawRequest", async (req, res) => {
   const data = req.body;
 

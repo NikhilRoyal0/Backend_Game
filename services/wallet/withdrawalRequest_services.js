@@ -6,6 +6,11 @@ module.exports.getAllWithdrawRequest=async()=> {
 return data;
 }
 
+module.exports.getRequestByUserId = async (user_id) => {
+    const [data] = await dbConnection.query('SELECT * FROM withdrawal_requests WHERE user_id = ?', [user_id]);
+    return data;
+}
+
 module.exports.newWithdrawRequest=async(withdrawRequest)=>{
     const [data]=await dbConnection.query('INSERT INTO withdrawal_requests SET ?',withdrawRequest)
     return data;

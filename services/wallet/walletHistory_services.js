@@ -6,6 +6,11 @@ module.exports.getWalletHistory=async()=> {
 return data;
 }
 
+module.exports.getWallethistoryByUserId = async (user_id) => {
+    const [data] = await dbConnection.query('SELECT * FROM color_game_wallet_history WHERE user_id = ?', [user_id]);
+    return data;
+}
+
 module.exports.newWalletHistory=async(walletHistory)=>{
     const [data]=await dbConnection.query('INSERT INTO color_game_wallet_history SET ?',walletHistory)
     return data;
