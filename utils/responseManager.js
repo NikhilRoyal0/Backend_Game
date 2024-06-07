@@ -1,5 +1,5 @@
 class ResponseManager {
-    static sendSuccess(res, data=[], statusCode = 200, message = "Success",errorCode="NO",errorMessage="") {
+    static sendSuccess(res, data=[], statusCode = 201, message = "Success",errorCode="NO",errorMessage="") {
       const response = {
         statusCode,
         message,
@@ -9,7 +9,7 @@ class ResponseManager {
       };
       res.status(statusCode).json(response);
     }
-    static sendError(res, statusCode = 200, errorCode="Yes",errorMessage="") {
+    static sendError(res, statusCode = 400, errorCode="Yes",errorMessage="") {
         var data=[]
         const response = {
           statusCode,
