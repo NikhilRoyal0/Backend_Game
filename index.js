@@ -11,10 +11,10 @@ app.use(cors());
 
 
 // Middleware to parse URL-encoded data in the request body
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 
 // Game Setting
-app_setting_routes = require("./routes/setting/index");
+app_setting_routes = require("./routes/setting/index"); 
 
 // Game Profile
 game_users = require("./routes/profile/index");
