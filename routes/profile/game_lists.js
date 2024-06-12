@@ -16,6 +16,7 @@ route.get("/getGameList", async (req, res) => {
   } catch (error) {
     responseManager.sendError(res, error.message);
   }
+  return
 });
 
 route.post("/addGameList", upload.single("game_thumbnail"), (req, res) => {
@@ -37,6 +38,7 @@ route.post("/addGameList", upload.single("game_thumbnail"), (req, res) => {
     })
     .then((newGame) => responseManager.sendSuccess(res, newGame))
     .catch((error) => responseManager.sendError(res, error.message));
+    return
 });
 
 route.put("/updateGameList/:game_id", async (req, res) => {
@@ -56,6 +58,7 @@ route.put("/updateGameList/:game_id", async (req, res) => {
   } catch (error) {
     responseManager.sendError(res, error.message);
   }
+  return
 });
 
 route.delete("/deleteGameList/:game_id", async (req, res) => {
@@ -66,6 +69,7 @@ route.delete("/deleteGameList/:game_id", async (req, res) => {
   } catch (error) {
     responseManager.sendError(res, error.message);
   }
+  return
 });
 
 module.exports = route;

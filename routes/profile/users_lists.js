@@ -25,6 +25,8 @@ route.post("/addUser", async (req, res) => {
     usersService.addUser(data)
         .then(newSetting => responseManager.sendSuccess(res, newSetting))
         .catch(error => responseManager.sendError(res, error.message));
+
+        return
 });
 
 
@@ -46,6 +48,8 @@ route.put("/updateUser/:setting_id", (req, res) => {
         .catch(error => {
             responseManager.sendError(res, error.message);
         });
+
+        return
 });
 
 
@@ -56,6 +60,8 @@ route.delete("/deleteUser/:user_id", (req, res) => {
     usersService.deleteUser(id)
         .then(deletedUser => responseManager.sendSuccess(res, deletedUser))
         .catch(error => responseManager.sendError(res, error.message));
+
+        return
 });
 
 

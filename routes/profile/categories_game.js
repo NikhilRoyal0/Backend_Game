@@ -14,6 +14,8 @@ route.get("/getAllCategory", (req, res) => {
     .getAllCategories()
     .then((data) => responseManager.sendSuccess(res, data))
     .catch((error) => responseManager.sendError(res, error.message));
+
+    return
 });
 
 route.post("/addCategory", upload.single("category_image"), (req, res) => {
@@ -36,6 +38,8 @@ route.post("/addCategory", upload.single("category_image"), (req, res) => {
     })
     .then((newCategory) => responseManager.sendSuccess(res, newCategory))
     .catch((error) => responseManager.sendError(res, error.message));
+
+    return
 });
 
 route.put(
@@ -68,6 +72,8 @@ route.put(
         responseManager.sendSuccess(res, updatedCategory)
       )
       .catch((error) => responseManager.sendError(res, error.message));
+
+      return
   }
 );
 
@@ -80,6 +86,8 @@ route.delete("/deleteCategory/:category_id", (req, res) => {
       responseManager.sendSuccess(res, deletedCategory)
     )
     .catch((error) => responseManager.sendError(res, error.message));
+
+    return
 });
 
 module.exports = route;
