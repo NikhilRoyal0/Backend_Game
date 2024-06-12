@@ -11,15 +11,15 @@ app.use(cors());
 
 
 // Middleware to parse URL-encoded data in the request body
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 
 // Game Setting
-app_setting_routes = require("./routes/setting/index"); 
+app_setting_routes = require("./routes/setting/index");
 
 // Game Profile
-game_users = require("./routes/profile/index");
-game_categories = require("./routes/profile/index");
-game_list = require("./routes/profile/index");
+game_users = require("./routes/profile/users_lists");
+game_categories = require("./routes/profile/categories_game");
+game_list = require("./routes/profile/game_lists");
 login = require("./routes/login/login");
 profile = require("./routes/login/login");
 
@@ -53,8 +53,8 @@ app.use("/v1/setting/", app_setting_routes);
 app.use("/v1/profile/", game_users);
 app.use("/v1/profile/", game_categories);
 app.use("/v1/profile/", game_list);
-app.use("/v1/",login);
-app.use("/v1/",profile);
+app.use("/v1/", login);
+app.use("/v1/", profile);
 
 // Game Marquee
 
